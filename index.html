@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raunak Kumar Panday - Executive Resume</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #020617;
+            --card-bg: #0f172a;
+            --primary-green: #22c55e;
+            --neon-green: #4ade80;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent-glow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            /* PDF fix for colors */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary-green), #16a34a);
+            color: #000;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.5);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        /* Header / Profile Card */
+        header {
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            box-shadow: var(--accent-glow);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            background: #1e293b;
+            border: 3px solid var(--primary-green);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name-tag h1 {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+
+        .sub-title {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-box {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--text-dim);
+        }
+
+        /* Content Sections */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .section-heading {
+            color: var(--primary-green);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .experience-card {
+            border-left: 3px solid var(--primary-green);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .exp-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .exp-company {
+            color: var(--neon-green);
+            font-weight: 500;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--neon-green);
+            padding: 6px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Language Meter */
+        .lang-bar {
+            width: 100%;
+            height: 8px;
+            background: #1e293b;
+            border-radius: 10px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: var(--primary-green);
+            border-radius: 10px;
+        }
+
+        /* PRINT FIX: Forces Dark Theme in PDF */
+        @media print {
+            body {
+                background-color: #020617 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            header, section {
+                background-color: #0f172a !important;
+                border: 1px solid #22c55e !important;
+            }
+            .print-btn { display: none; }
+            * { color: white !important; }
+            .section-heading, .exp-company, .tag, .sub-title { color: #22c55e !important; }
+        }
+
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; text-align: center; }
+            .profile-img { margin: 0 auto; }
+            .grid-layout { grid-template-columns: 1fr; }
+            .name-tag h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        💾 Save as PDF
+    </button>
+
+    <div class="main-wrapper">
+        <header data-aos="zoom-in">
+            <div class="profile-img">
+                <img src="image.png" alt="Raunak Image">
+            </div>
+            <div class="name-tag">
+                <h1 data-aos="fade-left" data-aos-delay="200">Raunak Kumar Panday</h1>
+                <div class="sub-title">💼 CFO @ Aqua X | 💻 Front-End Dev</div>
+                <div class="contact-box">
+                    <span>📧 rk1234raunak1@gmail.com</span>
+                    <span>📞 +91-9211750599</span>
+                    <span>📍 Maidan Garhi, New Delhi-110068</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid-layout">
+            <div class="left-side">
+                <section data-aos="fade-up">
+                    <h2 class="section-heading">👔 Work Experience</h2>
+                    <div class="experience-card">
+                        <div class="exp-role">Chief Financial Officer (CFO)</div>
+                        <div class="exp-company">Aqua X | Present</div>
+                        <p style="margin-top: 10px; color: var(--text-dim);">
+                            Currently leading financial strategies and managing operations at Aqua X. Handling high-level decision making and financial planning. 📈
+                        </p>
+                    </div>
+                </section>
+
+                <section data-aos="fade-up">
+                    <h2 class="section-heading">🏅 Achievements</h2>
+                    <div class="experience-card">
+                        <div class="exp-role">2nd Prize - Web Building 🥈</div>
+                        <div class="exp-company">School Competition</div>
+                        <p style="margin-top: 5px; color: var(--text-dim);">
+                            Won silver for building a creative and responsive UI layout under tight deadlines. 🚀
+                        </p>
+                    </div>
+                </section>
+
+                <section data-aos="fade-up">
+                    <h2 class="section-heading">📚 Education</h2>
+                    <div class="experience-card">
+                        <div class="exp-role">Class 12th (Board)</div>
+                        <div class="exp-company">Status: Ongoing 📖</div>
+                    </div>
+                    <div class="experience-card">
+                        <div class="exp-role">Class 10th (Secondary)</div>
+                        <div class="exp-company">Result: 60% ✅</div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-side">
+                <section data-aos="fade-left">
+                    <h2 class="section-heading">🛠️ Skills</h2>
+                    <p style="color: var(--primary-green); margin-bottom: 10px; font-weight: bold;">Development</p>
+                    <div class="tag-container">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Responsive</span>
+                    </div>
+                    <p style="color: var(--primary-green); margin-top: 20px; margin-bottom: 10px; font-weight: bold;">Office & Finance</p>
+                    <div class="tag-container">
+                        <span class="tag">MS Excel</span>
+                        <span class="tag">PowerPoint</span>
+                        <span class="tag">MS Word</span>
+                        <span class="tag" style="background: rgba(255, 255, 0, 0.1); color: yellow;">Tally (Learning)</span>
+                    </div>
+                </section>
+
+                <section data-aos="fade-left">
+                    <h2 class="section-heading">🗣️ Languages</h2>
+                    <div style="margin-bottom: 15px;">
+                        <span>Hindi 🇮🇳</span>
+                        <div class="lang-bar"><div class="fill" style="width: 100%;"></div></div>
+                    </div>
+                    <div>
+                        <span>English 🇬🇧</span>
+                        <div class="lang-bar"><div class="fill" style="width: 70%;"></div></div>
+                    </div>
+                </section>
+
+                <section data-aos="fade-left">
+                    <h2 class="section-heading">✨ Personal Info</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">
+                        🔥 Tech Enthusiast<br>
+                        ⚡ Fast Learner<br>
+                        🎯 Results Driven
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
